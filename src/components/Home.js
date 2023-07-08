@@ -14,7 +14,7 @@ const Home = () => {
       <div className='productcontainer'>
         {products.map((prod)=>{
           return <SingleProduct prod={prod} key={prod.id}/>
-} )}
+      } )}
       </div>
     </div>
   )

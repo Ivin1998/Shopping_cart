@@ -1,10 +1,13 @@
-import React, { useState } from 'react'
 import { Button, Form } from 'react-bootstrap';
 import Rating from './Rating';
+import { Cartstate } from '../context/Context';
 
 const Filters = () => {
 
-    const[rate,setRate]= useState(3);
+    const{productState:{byStock,byFastDelivery,sort,byRating}
+    ,productDispatch} = Cartstate();
+
+    console.log({byStock,sort,byFastDelivery,byRating});
 
   return (
     <div className='filters'>
@@ -15,7 +18,14 @@ const Filters = () => {
         label="Ascending"
         name="group1"
         type="radio"
-        id={`inline-1`} />
+        id={`inline-1`} 
+        onChange={()=>
+        productDispatch({
+            type:'SORT_BY_PRICE',
+            payload:"lowTOHigh"
+        })}
+        
+        />
         </span>
         <span>
         <Form.Check
@@ -23,7 +33,14 @@ const Filters = () => {
         label="Descending"
         name="group1"
         type="radio"
-        id={`inline-2`} />
+        id={`inline-2`}
+        onChange={()=>
+        productDispatch({
+            type:'SORT_BY_PRICE',
+            payload:'highTOLOW'
+        })
+        }
+        />
     </span>
     <span>
         <Form.Check
@@ -31,7 +48,10 @@ const Filters = () => {
         label="Fast Delivery Only"
         name="group1"
         type="radio"
-        id={`inline-2`} />
+        id={`inline-2`}
+        onChange={()=>productDispatch({
+            type:'FILTER_BY_DELIVERY' 
+        })} />  
     </span>
     <span>
         <Form.Check
@@ -39,21 +59,24 @@ const Filters = () => {
         label="Include Out of Stock"
         name="group1"
         type="checkbox"
-        id={`inline-3`} />
-    </span>
-    <span>
-        <Form.Check
-        inline 
-        label="Fast Delivery Only"
-        name="group1"
-        type="checkbox"
-        id={`inline-4`} />
+        id={`inline-3`} 
+        onChange={()=>productDispatch({
+            type:'FILTER_BY_STOCK'  
+        })}
+        />
     </span>
     <span>
         <label style={{padding:10}}>Rating: </label>
-        <Rating rating={rate} onClick={(e)=>setRate(e)} style={{cursor:"pointer"}}/>
+        <Rating rating={byRating} onClick={(e)=>
+            productDispatch({
+            type:"FILTER_BY_RATING",
+            payload:e,
+        })} style={{cursor:"pointer"}}/>
     </span>
-    <Button variant="light">Clear Filters</Button>
+    <Button variant="light"
+    onClick={()=>productDispatch({
+        type:"CLEAR_FILTERS"
+    })}>Clear Filters</Button>
     </div>
   )
 }

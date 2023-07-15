@@ -23,8 +23,8 @@ const Filters = () => {
         productDispatch({
             type:'SORT_BY_PRICE',
             payload:"lowTOHigh"
-        })}
-        
+        })} 
+        checked={sort=== "lowTOHigh"? true:false}
         />
         </span>
         <span>
@@ -40,6 +40,7 @@ const Filters = () => {
             payload:'highTOLOW'
         })
         }
+        checked={sort=== "highTOLOW"? true:false}
         />
     </span>
     <span>
@@ -63,6 +64,7 @@ const Filters = () => {
         onChange={()=>productDispatch({
             type:'FILTER_BY_STOCK'  
         })}
+        checked={byStock}
         />
     </span>
     <span>

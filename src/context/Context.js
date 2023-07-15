@@ -7,6 +7,7 @@ const Cart = createContext();
 faker.seed(95);
 
 const Context = ({children}) => {
+
     const products = [...Array(30)].map(()=>({
       id: faker.string.uuid(),
       productName : faker.commerce.product(),
@@ -17,9 +18,9 @@ const Context = ({children}) => {
       ratings : faker.helpers.arrayElement([1,2,3,4,5]),
     }));
 
-    const [state,dispatch] = useReducer(cartReducer,{ 
+    const [state,dispatch] = useReducer(cartReducer,{  //dispatch similar to setState
       products: products,
-      cart:[]
+      cart:[]                                           
     })
     
     const [productState,productDispatch]=useReducer(productReducer,{
@@ -32,8 +33,8 @@ const Context = ({children}) => {
 
   return (
    <Cart.Provider value={{state,dispatch,productState,productDispatch}}>
-    {children}   {/* App in index.js is the children */}
-    </Cart.Provider>
+    {children}  {/*  {special prop in react} */}
+    </Cart.Provider>            //made available all the states to be used from anywhere
   )
 }
 

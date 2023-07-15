@@ -40,8 +40,8 @@ const Filters = () => {
             payload:'highTOLOW'
         })
         }
-        checked={sort=== "highTOLOW"? true:false}
-        />
+        checked={sort=== "highTOLOW"? true:false} />  
+        
     </span>
     <span>
         <Form.Check
@@ -52,7 +52,9 @@ const Filters = () => {
         id={`inline-2`}
         onChange={()=>productDispatch({
             type:'FILTER_BY_DELIVERY' 
-        })} />  
+        })}
+        checked={byFastDelivery}/>
+       
     </span>
     <span>
         <Form.Check

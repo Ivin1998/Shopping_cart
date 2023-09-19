@@ -21,8 +21,8 @@ const Filters = () => {
         id={`inline-1`} 
         onChange={()=>
         productDispatch({
-            type:'SORT_BY_PRICE',
-            payload:"lowTOHigh"
+            type:'SORT_BY_PRICE', //similar to state
+            payload:"lowTOHigh"  //similar to setState
         })} 
         checked={sort=== "lowTOHigh"? true:false}
         />

@@ -35,7 +35,7 @@ const Cart = () => {
                <Rating rating={prod.ratings} />
               </Col>
               <Col md={2}>
-                <Form.Select value={prod.qty}
+                <Form.Select value={prod}
                 onChange={(e)=>dispatch({
                   type:"CHANGE_CART_QTY",
                   payload:{
